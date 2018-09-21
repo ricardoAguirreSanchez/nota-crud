@@ -1,0 +1,29 @@
+{
+    "todos":[
+        {   "titulo":"Problem",
+            "responsable":"Juan",
+            "prioridad":"baja",
+            "descripcion":"build is not optimized"
+        },
+        {   "titulo":"Output",
+            "responsable":"Pepe",
+            "prioridad":"media",
+            "descripcion":"Note that the development "
+        },
+        {   "titulo":"Terminal",
+            "responsable":"Luis",
+            "prioridad":"baja",
+            "descripcion":"You can now view"
+        },
+        {   "titulo":"Debug console",
+            "responsable":"Perez",
+            "prioridad":"alta",
+            "descripcion":"Visual Studio Code"
+        },
+        {   "titulo":"Compiled successfully",
+            "responsable":"Marcos",
+            "prioridad":"media",
+            "descripcion":"Delta compression using up to 4"
+        }
+    ]
+}
