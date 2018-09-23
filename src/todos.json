@@ -1,29 +1,24 @@
 {
     "todos":[
-        {   "titulo":"Problem",
+        {   "titulo":"Problemas II",
             "responsable":"Juan",
             "prioridad":"baja",
-            "descripcion":"build is not optimized"
+            "descripcion":"Ejercicios del 1 al 10"
         },
-        {   "titulo":"Output",
+        {   "titulo":"Sacar al perro",
             "responsable":"Pepe",
             "prioridad":"media",
-            "descripcion":"Note that the development "
+            "descripcion":"Solo 2 vueltas a la manzana"
         },
-        {   "titulo":"Terminal",
+        {   "titulo":"Limpiar el patio",
             "responsable":"Luis",
             "prioridad":"baja",
-            "descripcion":"You can now view"
+            "descripcion":"Pasar escoba y trapeador"
         },
-        {   "titulo":"Debug console",
+        {   "titulo":"Comprar verduras",
             "responsable":"Perez",
             "prioridad":"alta",
-            "descripcion":"Visual Studio Code"
-        },
-        {   "titulo":"Compiled successfully",
-            "responsable":"Marcos",
-            "prioridad":"media",
-            "descripcion":"Delta compression using up to 4"
+            "descripcion":"Papa, tomate y lechuga"
         }
     ]
 }
