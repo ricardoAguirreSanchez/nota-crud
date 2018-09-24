@@ -18,6 +18,9 @@ class Formulario extends Component {
         e.preventDefault();
         //con esto puedo usar la funcion qrecibi de property
         this.props.guardameEsta(this.state);
+
+        
+
     }
 
     cambioInput(e){

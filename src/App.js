@@ -105,7 +105,7 @@ class App extends Component {
       <div>
         <nav className="navbar navbar-dark bg-dark">
               <a href="" className="text-white">
-                  Tareas <span className="badge badge-light">{Object.keys(this.state.tareas).length}</span> 
+                  Tareas <span title="Total de tareas pendientes" className="badge badge-light">{Object.keys(this.state.tareas).length}</span> 
               </a>
               <img src={logo} className="App-logo" alt="logo" />
         </nav>
