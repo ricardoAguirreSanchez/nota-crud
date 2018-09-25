@@ -24,7 +24,7 @@ class App extends Component {
   constructor(){
     super();
     this.state={
-      tareas:{}
+      tareas:[]
     }
     this.guardarTarea = this.guardarTarea.bind(this);
     this.eliminarTarea = this.eliminarTarea.bind(this);
@@ -35,13 +35,35 @@ class App extends Component {
 
   //se ejecuta luego de q ue los componentes ya fueron renderizados en el DOM
   componentWillMount(){
-    //traigo todo lo q tengo de la BD
-    const todos = firebase.database().ref('/todos').once('value');
-    todos.then((snapshot)=> {
+
+    //traigo a todos
+    firebase.database().ref('/todos').once('value')
+    .then((snapshot)=> {
       this.setState ({
-        tareas : snapshot.val()
+        tareas : (snapshot.val()==null?[]:snapshot.val())
       })
     });
+
+
+    //para cuando se agrega uno
+    firebase.database().ref('/todos').on('child_added',(nuevoHijo)=>{
+      const todos = firebase.database().ref('/todos').once('value');
+    todos.then((snapshot)=> {
+      this.setState ({
+        tareas : (snapshot.val()==null?[]:snapshot.val())
+      })
+    });
+    })
+    
+    debugger;
+    firebase.database().ref('/todos').on('child_removed',(hijoAgregado)=>{
+      const todos = firebase.database().ref('/todos').once('value');
+    todos.then((snapshot)=> {
+      this.setState ({
+        tareas : (snapshot.val()==null?[]:snapshot.val())
+      })
+    });
+    })
   }
   
 
@@ -54,14 +76,7 @@ class App extends Component {
       prioridad : tareaNueva.prioridad,
       descripcion : tareaNueva.descripcion
     });
-
-    const todos = firebase.database().ref('/todos').once('value');
-    todos.then((snapshot)=> {
-      this.setState ({
-        tareas : snapshot.val()
-      })
-    });
-  }
+}
   
   //si vamos a usar una variable del html, usarmos bind(,)
   eliminarTarea(key){
@@ -69,38 +84,36 @@ class App extends Component {
     //borramos de la base
     firebase.database().ref('/todos').child(key).remove();
 
-    //recargamos el estado
-    const todos = firebase.database().ref('/todos').once('value');
-    todos.then((snapshot)=> {
-      this.setState ({
-        tareas : snapshot.val()
-      })
-    });
   }
 
 
   render() {
     const JSONTareas = this.state.tareas;
-    const cuadradosConTareas = Object.keys(this.state.tareas).map((unaKey,indice)=> {
-      return(
-        <div key={indice} className="col-md-4">
-          <div className="card mt-4 mb-4 text-center">
-            <div className="card-header">
-              <h5>{JSONTareas[unaKey].titulo}</h5>
-              <Badge tipo={JSONTareas[unaKey].prioridad}>{JSONTareas[unaKey].prioridad}</Badge>
-            </div>
-            <div className="card-body">
-              <p>{JSONTareas[unaKey].descripcion}</p>
-              <p className="font-weight-bold">{JSONTareas[unaKey].responsable}</p>
-            </div>
-            <div className="card-footer">
-              <button type="button" className="btn btn-danger" 
-              onClick={this.eliminarTarea.bind(this,unaKey)}>Borrar</button>
+    debugger;
+    let cuadradosConTareas = <div></div>;
+    if(Object.keys(this.state.tareas).length > 0 ){
+      cuadradosConTareas = Object.keys(this.state.tareas).map((unaKey,indice)=> {
+        return(
+          <div key={indice} className="col-md-4">
+            <div className="card mt-4 mb-4 text-center">
+              <div className="card-header">
+                <h5>{JSONTareas[unaKey].titulo}</h5>
+                <Badge tipo={JSONTareas[unaKey].prioridad}>{JSONTareas[unaKey].prioridad}</Badge>
+              </div>
+              <div className="card-body">
+                <p>{JSONTareas[unaKey].descripcion}</p>
+                <p className="font-weight-bold">{JSONTareas[unaKey].responsable}</p>
+              </div>
+              <div className="card-footer">
+                <button type="button" className="btn btn-danger" 
+                onClick={this.eliminarTarea.bind(this,unaKey)}>Borrar</button>
+              </div>
             </div>
           </div>
-        </div>
-      );
-    })
+        );
+      })
+    }
+    
     return (
       <div>
         <nav className="navbar navbar-dark bg-dark">
