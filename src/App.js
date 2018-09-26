@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import logo from './logo.svg';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'
 
 import Formulario from './Componentes/Formulario';
 import Badge from './Componentes/Badge';
@@ -17,7 +19,9 @@ const config = {
     messagingSenderId: '321895203432'
   };
   firebase.initializeApp(config);
+
   
+
 
 class App extends Component {
   //super para usar this en el construtor, state como estado del componente
@@ -55,7 +59,6 @@ class App extends Component {
     });
     })
     
-    debugger;
     firebase.database().ref('/todos').on('child_removed',(hijoAgregado)=>{
       const todos = firebase.database().ref('/todos').once('value');
     todos.then((snapshot)=> {
@@ -78,11 +81,33 @@ class App extends Component {
     });
 }
   
+
+
+
+
+
   //si vamos a usar una variable del html, usarmos bind(,)
   eliminarTarea(key){
     
-    //borramos de la base
-    firebase.database().ref('/todos').child(key).remove();
+    confirmAlert({
+      title: 'Confirmar cambio',
+      message: 'Esta seguro que desea borrar la tarea?',
+      buttons: [
+        {
+          label: 'No',
+          onClick: () => console.log('No borrar')
+        },
+        {
+          label: 'Si, dale',
+          onClick: () => {
+            //borramos de la base
+            firebase.database().ref('/todos').child(key).remove();
+          }
+        }
+      ]
+    })
+
+    
 
   }
 
@@ -107,6 +132,7 @@ class App extends Component {
               <div className="card-footer">
                 <button type="button" className="btn btn-danger" 
                 onClick={this.eliminarTarea.bind(this,unaKey)}>Borrar</button>
+  
               </div>
             </div>
           </div>
@@ -114,6 +140,7 @@ class App extends Component {
       })
     }
     
+
     return (
       <div>
         <nav className="navbar navbar-dark bg-dark">
