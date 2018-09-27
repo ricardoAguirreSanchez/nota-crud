@@ -1,5 +1,6 @@
 node_modules/.bin*
 node_modules/.n*
+node_modules/.c*
 node_modules/.p*
 node_modules/.o*
 node_modules/m*
