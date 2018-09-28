@@ -1,0 +1,23 @@
+PARA ARMAR MODELO DE ESTRUCTURA REACT
+-----------------------------------------------
+npm install -g create-react-app
+create-react-app nombreApp
+cd nombreApp
+npm start
+--------------------------------------------------
+
+npm install -g yarn (para instalar yarm)
+yarn add prop-types (para poder usar prop y pasar variables entre componentes
+
+-------------------------------------------------
+diferencia en tre prop y state:
+prop: es para datos mas fijos q no cambian tanto 
+state: para info dinamica es el state y que controlemos el comportamiento de la app
+
+-----------------------------------------------
+react router
+npm install react-router-dom
+------------------------------------------------
+Colores en CSS
+https://uigradients.com/#LoveandLiberty
+---------------------------------------------
