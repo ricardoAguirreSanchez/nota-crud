@@ -18,14 +18,13 @@ class Formulario extends Component {
         e.preventDefault();
         //con esto puedo usar la funcion qrecibi de property
         this.props.guardameEsta(this.state);
-
+        document.getElementById("create-course-form").reset();
         
 
     }
 
     cambioInput(e){
         //para tomar los metodos name y value del e.target
-        debugger;
         const { name , value } = e.target;
         this.setState({
             [name] : value
@@ -38,7 +37,7 @@ class Formulario extends Component {
             <div className="card-header">
             <h5>Tarea Nueva</h5>
             </div>
-            <form className="card-body" onSubmit={this.guardarTarea}>
+            <form id="create-course-form" className="card-body" onSubmit={this.guardarTarea}>
                 <div className="form-group">
                     <input type="text" placeholder="Titulo" name="titulo" 
                     className="form-control" onChange={this.cambioInput}/>
