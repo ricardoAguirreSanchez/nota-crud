@@ -21,3 +21,16 @@ npm install react-router-dom
 Colores en CSS
 https://uigradients.com/#LoveandLiberty
 ---------------------------------------------
+Si se lleno la memoria
+sudo sysctl fs.inotify.max_user_watches=582222 && sudo sysctl -p
+------------------------------------------
+PARA BORRAR UN COMMIT:
+1.- Crear un branch con la verison de commit si quieres
+    git checkout <commit hash>
+    git checkout -b <new branch>
+    git cherry-pick <commit hash>
+2.- COnvertir ese nuevo branch en master
+    git checkout master
+    git reset --hard <new branch>
+    git push -f origin master
+3.- Borrar el branch creado q esta al pedo
