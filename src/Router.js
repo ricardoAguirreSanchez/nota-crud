@@ -17,4 +17,5 @@ const AppRouter = () =>
         </Switch>
     </App>
 
+//lo que exportamos es directamente una variable solo
 export default AppRouter;
